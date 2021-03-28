@@ -24,48 +24,48 @@ function App() {
   const { apiLoading, people } = useSelector((store) => store.appReducer);
 
   return (
-    // <div className="App">
-    //   {apiLoading ? <Spin /> : null}
-    //   {people ? <div>{people.name}</div> : null}
-    //   <Button
-    //     title="GET STAR WARS"
-    //     onClick={() => {
-    //       setCounter(counter + 1);
-    //       dispatch(getStarWars(counter + 1));
-    //     }}
-    //   >
-    //     GET STAR WARS
-    //   </Button>
-    //   <Button title="Decrease" onClick={() => setCounter(counter - 1)} />
-    //   <br />
-    //   {counter}
-    //   {myArr.map((value) => (
-    //     <div>{value}</div>
-    //   ))}
-    // </div>
-    <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-          <Menu.Item key="1">My workouts</Menu.Item>
-          <Menu.Item key="2">Statistics</Menu.Item>
-          <Menu.Item key="3">Pair device</Menu.Item>
-          <Menu.Item key="4">New workout</Menu.Item>
-          <Menu.Item key="5">Profile</Menu.Item>
-        </Menu>
-      </Header>
-      <Content style={{ padding: "0 50px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="site-layout-content">Welcome to catrin!</div>
-      </Content>
-      <Footer style={{ textAlign: "center" }}>
-        catrin ©2021 Created by Bence Ambrus
-      </Footer>
-    </Layout>
+    <div className="App">
+      {apiLoading ? <Spin /> : null}
+      {people ? <div>{people.name}</div> : null}
+      <Button
+        title="GET STAR WARS"
+        onClick={() => {
+          setCounter(counter + 1);
+          dispatch(getStarWars(counter + 1));
+        }}
+      >
+        GET STAR WARS
+      </Button>
+      <Button title="Decrease" onClick={() => setCounter(counter - 1)} />
+      <br />
+      {counter}
+      {myArr.map((value) => (
+        <div>{value}</div>
+      ))}
+    </div>
+    // <Layout className="layout">
+    //   <Header>
+    //     <div className="logo" />
+    //     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+    //       <Menu.Item key="1">My workouts</Menu.Item>
+    //       <Menu.Item key="2">Statistics</Menu.Item>
+    //       <Menu.Item key="3">Pair device</Menu.Item>
+    //       <Menu.Item key="4">New workout</Menu.Item>
+    //       <Menu.Item key="5">Profile</Menu.Item>
+    //     </Menu>
+    //   </Header>
+    //   <Content style={{ padding: "0 50px" }}>
+    //     <Breadcrumb style={{ margin: "16px 0" }}>
+    //       <Breadcrumb.Item>Home</Breadcrumb.Item>
+    //       <Breadcrumb.Item>List</Breadcrumb.Item>
+    //       <Breadcrumb.Item>App</Breadcrumb.Item>
+    //     </Breadcrumb>
+    //     <div className="site-layout-content">Welcome to catrin!</div>
+    //   </Content>
+    //   <Footer style={{ textAlign: "center" }}>
+    //     catrin ©2021 Created by Bence Ambrus
+    //   </Footer>
+    // </Layout>
   );
 }
 

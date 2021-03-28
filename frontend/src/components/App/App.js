@@ -6,7 +6,7 @@ import AuthenticatedRoute from "components/Auth/Auth";
 const App = () => (
   <Switch>
     <AuthenticatedRoute exact path="/" component={ROUTES.MainPage} />
-    <Route exact path="/cica" component={ROUTES.LoginPage} />
+    <Route exact path="/login" component={ROUTES.LoginPage} />
   </Switch>
 );
 

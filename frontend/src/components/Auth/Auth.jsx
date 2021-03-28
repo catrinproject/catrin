@@ -9,7 +9,7 @@ const AuthenticatedRoute = ({component : Component, ...props}) => {
     if (appReducer.isAuthenticated){
         return <Route component={Component}{...props}/>;
     }
-    history.push('/cica');    
+    history.push('/login');    
     return null;
 };
 

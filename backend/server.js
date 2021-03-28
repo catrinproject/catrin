@@ -9,12 +9,12 @@ const app = express();
 connectDB();
 
 // Initialize Middleware
-// app.use(express.json());
+app.use(express.json());
 
 // Define Routes
-// app.use("/api/users", require("./routes/api/users"));
-// app.use("/api/auth", require("./routes/api/auth"));
-// app.use("/api/profile", require("./routes/api/profile"));
+app.use("/api/users", require("./api_routes/users"));
+app.use("/api/auth", require("./api_routes/auth"));
+app.use("/api/profile", require("./api_routes/profile"));
 
 // Serve static assets in production
 // if (process.env.NODE_ENV === "production") {
@@ -31,18 +31,18 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // TO BE ORGANIZED!
-app.get("/cica", async (req, res) => {
-  const User = mongoose.model(
-    "users",
-    new mongoose.Schema({ name: String, email: String, password: String })
-  );
-  const newUser = new User({
-    name: "bence",
-    email: "ben@ce.com",
-    password: "cica",
-  });
-  newUser.save();
-  const users = await User.find();
-
-  res.json(users);
-});
+// app.get("/cica", async (req, res) => {
+//   const User = mongoose.model(
+// "users",
+// new mongoose.Schema({ name: String, email: String, password: String })
+//   );
+//   const newUser = new User({
+// name: "bence",
+// email: "ben@ce.com",
+// password: "cica",
+//   });
+//   newUser.save();
+//   const users = await User.find();
+//
+//   res.json(users);
+// });

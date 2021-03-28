@@ -1,4 +1,8 @@
 {
+  "name": "catrin",
+  "version": "1.0.0",
+  "description": "Callisthenics Tracking Interface",
+  "main": "backend/server.js",
   "dependencies": {
     "antd": "^4.8.5",
     "axios": "^0.19.2",
@@ -14,7 +18,8 @@
   "scripts": {
     "backend": "nodemon backend",
     "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
