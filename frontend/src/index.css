@@ -28,3 +28,9 @@ code {
   float: right;
   margin: 16px 0 16px 24px;
 }
+
+#root,
+.ant-layout,
+.site-layout-content {
+  height: 100%;
+}

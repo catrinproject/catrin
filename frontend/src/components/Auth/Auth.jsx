@@ -5,8 +5,8 @@ import { Route } from "react-router-dom";
 
 
 const AuthenticatedRoute = ({component : Component, ...props}) => {
-    const appReducer = useSelector((store) => store.appReducer);
-    if (appReducer.isAuthenticated){
+    const authReducer = useSelector((store) => store.authReducer);
+    if (authReducer.token) {
         return <Route component={Component}{...props}/>;
     }
     history.push('/login');    

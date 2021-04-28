@@ -1,6 +1,8 @@
 const express = require("express");
 const connectDB = require("./db");
 const path = require("path");
+const CORS = require("cors");
+require("dotenv").config();
 
 // Initialize Express server
 const app = express();
@@ -10,6 +12,7 @@ connectDB();
 
 // Initialize Middleware
 app.use(express.json());
+app.use(CORS());
 
 // Define Routes
 app.use("/api/users", require("./api_routes/users"));
@@ -29,20 +32,3 @@ app.use("/api/profile", require("./api_routes/profile"));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-// TO BE ORGANIZED!
-// app.get("/cica", async (req, res) => {
-//   const User = mongoose.model(
-// "users",
-// new mongoose.Schema({ name: String, email: String, password: String })
-//   );
-//   const newUser = new User({
-// name: "bence",
-// email: "ben@ce.com",
-// password: "cica",
-//   });
-//   newUser.save();
-//   const users = await User.find();
-//
-//   res.json(users);
-// });

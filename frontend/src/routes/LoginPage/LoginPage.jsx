@@ -2,24 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Input, Button, Spin, notification } from 'antd';
 import { UserOutlined, KeyOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from 'actions/appActions';
+import { login } from 'actions/authActions';
+import { history } from 'services/config';
+import Layout from 'components/Layout/Layout';
 
 const LoginPage = () => {
 
     const dispatch = useDispatch();
-    const appReducer = useSelector((store) => store.appReducer);
+    const authReducer = useSelector((store) => store.authReducer);
 
     useEffect(() => {
-        if (appReducer.isError) {
+        if (authReducer.isError) {
             notification.error({
                 message: 'Login error',
                 description:
-                  appReducer.error,
+                  authReducer.error,
                 placement: 'bottomRight',
                 duration: 2,
               });
         }
-    },[appReducer.isError]);
+    },[authReducer.isError]);
+
+    useEffect(() => {
+        if (authReducer.isAuthenticated) {
+            history.push("/")
+        }
+    },[authReducer.isAuthenticated]);
 
     const [inputs, setInputs] = useState({
         email: undefined,
@@ -40,17 +48,16 @@ const LoginPage = () => {
     console.log(inputs);
 
     return (
-        <div>
+        <Layout>
             <Input size="large" placeholder="e-mail" onChange={(e) => handleInputChange(e, "email")} prefix={<UserOutlined />} />
             <Input.Password size="large" placeholder="password" onChange={(e) => handleInputChange(e, "password")} prefix={<KeyOutlined />} />
             <Button type="primary" onClick={handleLogin}>
-                {appReducer.loginLoading ? <Spin/> : null }
                 Login
             </Button>
             {
-                appReducer.isError ? <div>{appReducer.error}</div> : null
+                authReducer.isError ? <div>{authReducer.error}</div> : null
             }
-        </div>
+        </Layout>
     );
 
 

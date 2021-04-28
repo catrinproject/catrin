@@ -1,58 +1,35 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import { createStore, compose, applyMiddleware } from "redux";
-import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
-import createSagaMiddleware from "redux-saga";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 import rootReducer from "reducers/rootReducer";
-import rootSaga from "sagas/rootSaga";
+import setAuthToken from "./utils/setAuthToken";
 
-// PROD
-function configureStoreProd(initialState) {
-  const sagaMiddleware = createSagaMiddleware();
+const initialState = {};
 
-  const middlewares = [sagaMiddleware];
+const middleware = [thunk];
 
-  const store = createStore(
-    rootReducer,
-    initialState,
-    compose(applyMiddleware(...middlewares))
-  );
-  sagaMiddleware.run(rootSaga);
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
-  return store;
-}
+// set up a store subscription listener
+// to store the users token in localStorage
 
-// DEV
-function configureStoreDev(initialState) {
-  const sagaMiddleware = createSagaMiddleware();
+// initialize current state from redux store for subscription comparison
+// preventing undefined error
+let currentState = store.getState();
 
-  const middlewares = [reduxImmutableStateInvariant(), sagaMiddleware];
-
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  const store = createStore(
-    rootReducer,
-    initialState,
-    composeEnhancers(applyMiddleware(...middlewares))
-  );
-
-  if (module.hot) {
-    module.hot.accept("reducers/rootReducer", () => {
-      const nextReducer = require("reducers/rootReducer").default; // eslint-disable-line global-require
-      store.replaceReducer(nextReducer);
-    });
+store.subscribe(() => {
+  // keep track of the previous and current state to compare changes
+  let previousState = currentState;
+  currentState = store.getState();
+  // if the token changes set the value in localStorage and axios headers
+  if (previousState.authReducer.token !== currentState.authReducer.token) {
+    const token = currentState.authReducer.token;
+    setAuthToken(token);
   }
-
-  sagaMiddleware.run(rootSaga);
-
-  return store;
-}
-
-export const configureStore =
-  process.env.NODE_ENV === "production"
-    ? configureStoreProd
-    : configureStoreDev;
-
-const store = configureStore();
+});
 
 export default store;
