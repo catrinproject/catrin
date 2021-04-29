@@ -20,16 +20,14 @@ app.use("/api/auth", require("./api_routes/auth"));
 app.use("/api/profile", require("./api_routes/profile"));
 
 // Serve static assets in production
-// if (process.env.NODE_ENV === "production") {
-//   // Set static folder
-//   app.use(express.static("frontend/build"));
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("frontend/build"));
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-//   });
-// }
-
-app.use(express.static("../frontend/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+}
 
 app.get("*", (req, res) => {
   res.sendFile("../frontend/build/index.html");
