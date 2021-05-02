@@ -1,8 +1,12 @@
 import React from "react";
-import { Layout as ANTlayout, Menu, Breadcrumb } from "antd";
+import { Layout as ANTlayout, Menu } from "antd";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "actions/authActions";
+import '../../fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBook, faCircle, faCircleNotch, faCopyright, faDotCircle, faDumbbell, faHeart, faHeartbeat } from '@fortawesome/free-solid-svg-icons'
+import './Layout.css';
 
 const { Header, Content, Footer } = ANTlayout;
 
@@ -13,27 +17,41 @@ function Layout(props) {
     <ANTlayout className="layout">
       <Header>
         <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
         {
             authReducer.token ? (
                 <>
                     <Menu.Item key="1">
+                      <Link to="/">catrin</Link>
+                    </Menu.Item>
+                    <Menu.Item key="2">
+                      <Link to="/new-workout">New workout</Link>
+                    </Menu.Item>
+                    <Menu.Item key="3">
                         <Link to="/my-workouts">My workouts</Link>
                     </Menu.Item>
-                    <Menu.Item key="2">Statistics</Menu.Item>
-                    <Menu.Item key="3">Pair device</Menu.Item>
-                    <Menu.Item key="4">New workout</Menu.Item>
-                    <Menu.Item key="5">Profile</Menu.Item>
-                    <Menu.Item key="6" onClick={()=>{dispatch(logout())}}>
+                    <Menu.Item key="4">
+                      <Link to="/statistics">Statistics</Link>
+                    </Menu.Item>
+                    <Menu.Item key="5">
+                      <Link Link to="/mi-band">Mi Band</Link>
+                    </Menu.Item>
+                    <Menu.Item key="6">
+                      <Link to="/profile">Profile</Link>
+                    </Menu.Item>
+                      <Menu.Item key="7" onClick={()=>{dispatch(logout())}}>
                         Logout
                     </Menu.Item>
                 </>
             ) : (
                 <>
                     <Menu.Item key="1">
-                        <Link to="/login">Login</Link>
+                      <Link to="/">catrin</Link>
                     </Menu.Item>
                     <Menu.Item key="2">
+                        <Link to="/login">Login</Link>
+                    </Menu.Item>
+                    <Menu.Item key="3">
                         <Link to="/register">Register</Link>
                     </Menu.Item>
                 </>
@@ -43,11 +61,6 @@ function Layout(props) {
         </Menu>
       </Header>
       <Content style={{ padding: "0 50px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
         <div className="site-layout-content">{props.children}</div>
       </Content>
       <Footer style={{ textAlign: "center" }}>

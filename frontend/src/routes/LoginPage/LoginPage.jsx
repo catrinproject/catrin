@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button, Spin, notification } from 'antd';
+import { Input, Button, notification } from 'antd';
 import { UserOutlined, KeyOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'actions/authActions';
