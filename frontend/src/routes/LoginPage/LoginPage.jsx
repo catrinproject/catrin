@@ -1,10 +1,10 @@
+import Layout from 'components/Layout/Layout';
 import React, { useState, useEffect } from 'react';
 import { Input, Button, notification } from 'antd';
 import { UserOutlined, KeyOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'actions/authActions';
 import { history } from 'services/config';
-import Layout from 'components/Layout/Layout';
 
 const LoginPage = () => {
 

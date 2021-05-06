@@ -7,6 +7,7 @@ import '../../fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook, faCircle, faCircleNotch, faCopyright, faDotCircle, faDumbbell, faHeart, faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import './Layout.css';
+import Profile from '../Profile/Profile';
 
 const { Header, Content, Footer } = ANTlayout;
 
@@ -41,6 +42,9 @@ function Layout(props) {
                     </Menu.Item>
                       <Menu.Item key="7" onClick={()=>{dispatch(logout())}}>
                         Logout
+                    </Menu.Item>
+                    <Menu.Item key="8">
+                      Welcome, {authReducer.user ? authReducer.user.name : ''}
                     </Menu.Item>
                 </>
             ) : (

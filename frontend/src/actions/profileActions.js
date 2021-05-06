@@ -1,5 +1,5 @@
-import api from "../utils/api";
-import { setAlert } from "./alert";
+import api from "../utils/apiUtil";
+import { setAlert } from "./alertActions";
 
 import {
   GET_PROFILE,
@@ -78,7 +78,7 @@ export const createProfile = (formData, history, edit = false) => async (
     dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
 
     if (!edit) {
-      history.push("/dashboard");
+      history.push("/");
     }
   } catch (err) {
     const errors = err.response.data.errors;
