@@ -25,6 +25,11 @@ const App = () => (
     />
     <AuthenticatedRoute exact path="/mi-band" component={ROUTES.MiBandPage} />
     <AuthenticatedRoute exact path="/profile" component={ROUTES.ProfilePage} />
+    <AuthenticatedRoute
+      exact
+      path="/edit-profile"
+      component={ROUTES.EditProfilePage}
+    />
   </Switch>
 );
 

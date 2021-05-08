@@ -5,6 +5,9 @@ import { UserOutlined, KeyOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'actions/authActions';
 import { history } from 'services/config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import '../../fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const LoginPage = () => {
 
@@ -49,6 +52,10 @@ const LoginPage = () => {
 
     return (
         <Layout>
+            <h1>Sign In</h1>
+            <p>
+            <FontAwesomeIcon icon={faUser}/> Sign Into Your Account
+            </p>
             <Input size="large" placeholder="e-mail" onChange={(e) => handleInputChange(e, "email")} prefix={<UserOutlined />} />
             <Input.Password size="large" placeholder="password" onChange={(e) => handleInputChange(e, "password")} prefix={<KeyOutlined />} />
             <Button type="primary" onClick={handleLogin}>

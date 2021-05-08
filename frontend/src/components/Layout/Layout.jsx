@@ -3,11 +3,11 @@ import { Layout as ANTlayout, Menu } from "antd";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "actions/authActions";
-import '../../fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBook, faCircle, faCircleNotch, faCopyright, faDotCircle, faDumbbell, faHeart, faHeartbeat } from '@fortawesome/free-solid-svg-icons'
+import '../../fontawesome';
+import { faCuttlefish } from "@fortawesome/free-brands-svg-icons";
+import { faBookOpen, faCapsules, faDumbbell, faEdit, faSignInAlt, faSignOutAlt, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import './Layout.css';
-import Profile from '../Profile/Profile';
 
 const { Header, Content, Footer } = ANTlayout;
 
@@ -23,40 +23,38 @@ function Layout(props) {
             authReducer.token ? (
                 <>
                     <Menu.Item key="1">
-                      <Link to="/">catrin</Link>
+                      <Link to="/"><FontAwesomeIcon icon={faCuttlefish} size="lg" />:  {authReducer.user ? authReducer.user.name : ''}</Link>
                     </Menu.Item>
                     <Menu.Item key="2">
-                      <Link to="/new-workout">New workout</Link>
+                      <Link to="/new-workout"><FontAwesomeIcon icon={faEdit}/> New workout</Link>
                     </Menu.Item>
                     <Menu.Item key="3">
-                        <Link to="/my-workouts">My workouts</Link>
+                        <Link to="/my-workouts"><FontAwesomeIcon icon={faDumbbell}/> My workouts</Link>
                     </Menu.Item>
                     <Menu.Item key="4">
-                      <Link to="/statistics">Statistics</Link>
+                      <Link to="/statistics"><FontAwesomeIcon icon={faBookOpen}/> Statistics</Link>
                     </Menu.Item>
                     <Menu.Item key="5">
-                      <Link Link to="/mi-band">Mi Band</Link>
+                      <Link Link to="/mi-band"><FontAwesomeIcon icon={faCapsules}/> Mi Band</Link>
                     </Menu.Item>
                     <Menu.Item key="6">
-                      <Link to="/profile">Profile</Link>
+                      <Link to="/profile"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                     </Menu.Item>
                       <Menu.Item key="7" onClick={()=>{dispatch(logout())}}>
-                        Logout
+                      <FontAwesomeIcon icon={faSignOutAlt}/> Logout
                     </Menu.Item>
-                    <Menu.Item key="8">
-                      Welcome, {authReducer.user ? authReducer.user.name : ''}
-                    </Menu.Item>
+                    
                 </>
             ) : (
                 <>
                     <Menu.Item key="1">
-                      <Link to="/">catrin</Link>
+                      <Link to="/"><FontAwesomeIcon icon={faCuttlefish} size="lg" /> catrin</Link>
                     </Menu.Item>
                     <Menu.Item key="2">
-                        <Link to="/login">Login</Link>
+                        <Link to="/login"><FontAwesomeIcon icon={faSignInAlt}/> Login</Link>
                     </Menu.Item>
                     <Menu.Item key="3">
-                        <Link to="/register">Register</Link>
+                        <Link to="/register"><FontAwesomeIcon icon={faUserPlus}/> Register</Link>
                     </Menu.Item>
                 </>
             )
@@ -65,7 +63,7 @@ function Layout(props) {
         </Menu>
       </Header>
       <Content style={{ padding: "0 50px" }}>
-        <div className="site-layout-content">{props.children}</div>
+        <div className="site-layout-content" style={{ "padding": "25px 60px" }} >{props.children}</div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
         catrin ©2021 Created by Bence Ambrus

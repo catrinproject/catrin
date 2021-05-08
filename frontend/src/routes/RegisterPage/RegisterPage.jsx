@@ -79,8 +79,8 @@ const RegisterPage = () => {
       }
       
       
-      <p className="my-1">
-        Already have an account? <Link to="/login">Sign In</Link>
+      <p>
+        Already have an account? <Link to="/login">Sign in</Link>
       </p>
     </Fragment>
     </Layout>

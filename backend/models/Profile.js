@@ -17,7 +17,7 @@ const ProfileSchema = new mongoose.Schema({
     type: Number,
   },
   sports: {
-    type: String,
+    type: Array,
   },
   location: {
     type: String,
