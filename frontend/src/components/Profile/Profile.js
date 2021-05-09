@@ -42,33 +42,33 @@ const Profile = () => {
             </h3>
             <h3>
               <b>Gender: </b>
-              {profile.gender}
+              {profile.gender ? profile.gender : "[-]"}
             </h3>
             <h3>
               <b>Born: </b>
-              <TimeAgo date={profile.birthday} />
+              {profile.gender ? <TimeAgo date={profile.birthday} /> : "[-]"}
             </h3>
             <h3>
               <b>Height: </b>
-              {profile.height} cm
+              {profile.height ? <>{profile.height} cm</> : "[-]"}
             </h3>
             <h3>
               <b>Sports:</b>
-              {profile.sports.map((sport) => (
-                <li>{sport}</li>
-              ))}
+              {profile.sports
+                ? profile.sports.map((sport) => <li>{sport}</li>)
+                : "[-]"}
             </h3>
             <h3>
               <b>Location: </b>
-              {profile.location}
+              {profile.location ? profile.location : "[-]"}
             </h3>
             <h3>
               <b>About:</b>
               <br />
-              {profile.bio}
+              {profile.bio ? profile.bio : "[-]"}
             </h3>
             <h3>
-              <b>Social accounts:</b>
+              {profile.social ? <b>Social accounts:</b> : ""}
               {profile.social.instagram ? (
                 <>
                   <br />

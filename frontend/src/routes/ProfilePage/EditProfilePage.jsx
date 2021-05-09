@@ -1,15 +1,15 @@
 import Layout from "components/Layout/Layout";
-import Profile from "components/Profile/Profile";
+import EditProfile from "components/Profile/EditProfile";
 import React from "react";
 
-const EditProfilePage = () => {
+const ProfilePage = () => {
   return (
     <Layout>
       <div className="site-layout-content">
-        Edit profile
+        <EditProfile />
       </div>
     </Layout>
   );
 }
 
-export default EditProfilePage;
+export default ProfilePage;
